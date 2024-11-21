@@ -54,6 +54,12 @@ public class Passenger {
     public void removeActivity(Activity activity) {
         activities.remove(activity);
     }
+
+    /**
+     * Prints out the passenger's information.
+     * This includes the passenger's name, status, seat number, balance, and activities.
+     * Activities are printed out in the format "> Activity Name - Activity Description"
+     */
     public void printPassengerInformation() {
         System.out.println("Name: " + name);
         System.out.println("Status: " + status);

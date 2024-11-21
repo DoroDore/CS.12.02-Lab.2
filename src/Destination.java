@@ -25,6 +25,13 @@ public class Destination {
     public void removeActivity(Activity activity) {
         activities.remove(activity);
     }
+
+    /**
+     * Prints out the destination's information.
+     * Loops through all activities, and uses their getString() method to print out their information.
+     * This method of looping is efficient because it is flexible for all types of activities.
+     * @return String
+     */
     @Override
     public String toString() {
         String thing = (ConsoleColors.GREEN + "Destination: " + destinationName + ConsoleColors.RESET);

@@ -22,6 +22,10 @@ public class CruiseShip {
         this.itinerary = itinerary;
         this.passengerList = new LinkedHashSet<Passenger>();
     }
+    /**
+     * Prints out the Ship name, along with the itinerary and passengers.
+     * Within each destination on the itinerary, the activities are detailed too.
+     */
     @Override
     public String toString() {
         String thing = ConsoleColors.RED + "Cruise Ship: " + shipName + ConsoleColors.RESET;
@@ -35,12 +39,18 @@ public class CruiseShip {
         }
         return thing;
     }
+    /**
+     * Prints out the itinerary of the cruise ship.
+     */
     public void printItinerary() {
         System.out.println(ConsoleColors.BOLD_YELLOW + "Itinerary for " + shipName + ConsoleColors.RESET);
         for (Destination destination : itinerary) {
             System.out.println(destination);
         }
     }
+    /**
+     * Prints out the passengers on the cruise ship.
+     */
     public void addPassenger(Passenger passenger) {
         if (passengerList.contains(passenger)) {
             System.out.println("Passenger is already on the ship");
@@ -55,5 +65,38 @@ public class CruiseShip {
         else {
             System.out.println("Ship is full");
         }
+    }
+    public void removePassenger(Passenger passenger) {
+        if (passengerList.contains(passenger)) {
+            passengerList.remove(passenger);
+            passenger.setSeatNumber(0);
+            passengerCapacity++;
+
+            // Shift seat numbers for passengers after the removed passenger
+            int seatNumber = 1; // Initialize the seat number counter
+            for (Passenger p : passengerList) {
+                p.setSeatNumber(seatNumber);
+                seatNumber++;
+            }
+
+            System.out.println(passenger.getName() + " has been removed from the ship. Passengers reassigned seats.");
+        } else {
+            System.out.println("Passenger is not on the ship");
+        }
+    }
+    public void joinActivity(Passenger passenger, Activity activity) {
+        activity.addMember(passenger);
+    }
+    public String getShipName() {
+        return shipName;
+    }
+    public int getPassengerCapacity() {
+        return passengerCapacity;
+    }
+    public ArrayList<Destination> getItinerary() {
+        return itinerary;
+    }
+    public LinkedHashSet<Passenger> getPassengerList() {
+        return passengerList;
     }
 }

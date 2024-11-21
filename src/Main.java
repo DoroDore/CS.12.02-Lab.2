@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        testAddActivity();
+
     }
     public static void testAddActivity() {
         Destination destinationTest = new Destination("Destination Test");
