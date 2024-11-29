@@ -2,8 +2,12 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-
+        testAddEverything();
     }
+
+    /**
+     * Tests the addActivity method in Destination.java
+     */
     public static void testAddActivity() {
         Destination destinationTest = new Destination("Destination Test");
         Actor actorTest = new Actor("Actor Test", "Actor Test Role");
@@ -15,9 +19,14 @@ public class Main {
         destinationTest.addActivity(theaterTest);
         Passenger passengerTest = new Passenger("Passenger Test", "Standard");
         passengerTest.printPassengerInformation();
-        theaterTest.addMember(passengerTest);
+        theaterTest.addMember(passengerTest, destinationTest);
         passengerTest.printPassengerInformation();
     }
+
+    /**
+     * Tests printing the entire itinerary of a cruise ship with indenting and color coding.
+     * Itinerary > Destination > Activity > Name, Description, Cost, Capacity, and Participants
+     */
     public static void printItinerary() {
         Destination destinationTest = new Destination("Destination Test");
         Actor actorTest = new Actor("Actor Test", "Actor Test Role");
@@ -47,6 +56,12 @@ public class Main {
         CruiseShip cruiseTest = new CruiseShip("Cruise Test", 100, itineraryTest);
         cruiseTest.printItinerary();
     }
+
+    /**
+     * Puts together all the previous tests. Tests destinations and adding participants, creating the
+     * itinerary of the cruise ship, and then displaying it alongside all the passengers and their details
+     * in the "toString" of the Cruise Ship.
+     */
     public static void testAddEverything() {
         Destination destinationTest = new Destination("Destination Test");
         Actor actorTest = new Actor("Actor Test", "Actor Test Role");
@@ -80,13 +95,20 @@ public class Main {
         cruiseTest.addPassenger(passengerTest3);
         cruiseTest.addPassenger(passengerTest4);
 
-        System.out.println(cruiseTest);
+        //System.out.println(cruiseTest);
+        cruiseTest.printShipInformation();
     }
+
+    /**
+     * Tests whether a passenger can join a cruise ship activity.
+     */
     public static void testJoinActivity() {
+        Destination destinationTest = new Destination("Destination Test");
         Activity activityTest = new Activity("Activity Test", "Activity Test Description", 10.0, 100);
         Passenger passengerTest = new Passenger("Passenger Test", "Standard");
+        destinationTest.addActivity(activityTest);
         passengerTest.printPassengerInformation();
-        activityTest.addMember(passengerTest);
+        activityTest.addMember(passengerTest, destinationTest);
         passengerTest.printPassengerInformation();
     }
 }

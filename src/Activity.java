@@ -23,26 +23,40 @@ public class Activity {
      * Since passenger is a reference variable, I can also use it to reverse add the activity to the passenger's
      * activity list too
      */
-    public void addMember(Passenger passenger) {
+    public void addMember(Passenger passenger, Destination destination) {
+        // Check if the passenger is already in the activity
         if (participants.contains(passenger)) {
             System.out.println("Passenger is already in the activity");
             return;
         }
-        if (activityCapacity != 0) {
-            if (passenger.getBalance() >= calcActivityPrice(passenger)) {
-                passenger.alterBalance(-calcActivityPrice(passenger));
-                participants.add(passenger);
-                passenger.addActivity(this);
-                activityCapacity--;
-                System.out.println(passenger.getName() + " added to the activity");
-            }
-            else {
-                System.out.println("Insufficient funds");
+
+        // Check if the passenger is already part of another activity in the same destination
+        for (Activity activity : passenger.getActivities()) {
+            if (destination.getActivities().contains(activity)) {
+                System.out.println("Passenger is already part of another activity in this destination");
+                return;
             }
         }
-        else {
+
+        // Check if the activity is full
+        if (activityCapacity == 0) {
             System.out.println("Activity is full");
+            return;
         }
+
+        // Check if the passenger has enough funds
+        double price = calcActivityPrice(passenger);
+        if (passenger.getBalance() < price) {
+            System.out.println("Insufficient funds");
+            return;
+        }
+
+        // Add the passenger to the activity
+        passenger.alterBalance(-price);
+        participants.add(passenger);
+        passenger.addActivity(this);
+        activityCapacity--;
+        System.out.println(passenger.getName() + " added to the activity");
     }
     public void removeMember(Passenger passenger) {
         if (participants.contains(passenger)) {

@@ -16,6 +16,13 @@ public class Destination {
     public ArrayList<Activity> getActivities() {
         return activities;
     }
+    public void printAvailableActivities() {
+        System.out.println(ConsoleColors.PURPLE + "Activities for " + destinationName + ConsoleColors.RESET);
+        for (Activity activity : activities) {
+            System.out.println(activity);
+            System.out.println("---------");
+        }
+    }
     public void setActivities(ArrayList<Activity> activities) {
         this.activities = activities;
     }

@@ -71,14 +71,14 @@ class CruiseShipTest {
         cruiseShip1.addPassenger(passenger1);
         cruiseShip1.addPassenger(passenger2);
         cruiseShip1.addPassenger(passenger3);
-        cruiseShip1.joinActivity(passenger1, walkingActivity1);
-        cruiseShip1.joinActivity(passenger2, walkingActivity1);
-        cruiseShip1.joinActivity(passenger3, walkingActivity1);
+        cruiseShip1.joinActivity(passenger1, walkingActivity1, destination1);
+        cruiseShip1.joinActivity(passenger2, walkingActivity1, destination1);
+        cruiseShip1.joinActivity(passenger3, walkingActivity1, destination1);
         assertEquals(3, walkingActivity1.getParticipants().size());
         assertEquals(47, walkingActivity1.getActivityCapacity());
-        cruiseShip1.joinActivity(passenger1, theaterActivity1);
-        cruiseShip1.joinActivity(passenger2, theaterActivity1);
-        cruiseShip1.joinActivity(passenger3, theaterActivity1);
+        cruiseShip1.joinActivity(passenger1, theaterActivity1, destination1);
+        cruiseShip1.joinActivity(passenger2, theaterActivity1, destination1);
+        cruiseShip1.joinActivity(passenger3, theaterActivity1, destination1);
         assertEquals(3, theaterActivity1.getParticipants().size());
         assertEquals(97, theaterActivity1.getActivityCapacity());
         assertEquals(975 ,passenger3.getBalance());
@@ -90,12 +90,12 @@ class CruiseShipTest {
         cruiseShip1.addPassenger(passenger1);
         cruiseShip1.addPassenger(passenger2);
         cruiseShip1.addPassenger(passenger3);
-        cruiseShip1.joinActivity(passenger1, walkingActivity1);
-        cruiseShip1.joinActivity(passenger2, walkingActivity1);
-        cruiseShip1.joinActivity(passenger3, walkingActivity1);
-        cruiseShip1.joinActivity(passenger1, theaterActivity1);
-        cruiseShip1.joinActivity(passenger2, theaterActivity1);
-        cruiseShip1.joinActivity(passenger3, theaterActivity1);
+        cruiseShip1.joinActivity(passenger1, walkingActivity1, destination1);
+        cruiseShip1.joinActivity(passenger2, walkingActivity1, destination1);
+        cruiseShip1.joinActivity(passenger3, walkingActivity1, destination1);
+        cruiseShip1.joinActivity(passenger1, theaterActivity1, destination1);
+        cruiseShip1.joinActivity(passenger2, theaterActivity1, destination1);
+        cruiseShip1.joinActivity(passenger3, theaterActivity1, destination1);
         assertEquals("Join tour guide Neil Armstrong to the moon!", walkingActivity1.getActivityDescription());
         assertEquals("A tale of achoos", theaterActivity1.getActivityDescription());
     }
@@ -122,7 +122,7 @@ class CruiseShipTest {
         destination1.addActivity(walkingActivity1);
         cruiseShip1.addPassenger(passenger3);
         passenger3.setBalance(0);
-        cruiseShip1.joinActivity(passenger3, walkingActivity1);
+        cruiseShip1.joinActivity(passenger3, walkingActivity1, destination1);
         assertEquals(50, walkingActivity1.getActivityCapacity());
         assertEquals(0, walkingActivity1.getParticipants().size());
     }
@@ -130,7 +130,7 @@ class CruiseShipTest {
     void seniorityDiscount() {
         destination1.addActivity(walkingActivity1);
         cruiseShip1.addPassenger(passenger4);
-        cruiseShip1.joinActivity(passenger4, walkingActivity1);
+        cruiseShip1.joinActivity(passenger4, walkingActivity1, destination1);
         assertEquals(995.5, passenger4.getBalance());
     }
 }

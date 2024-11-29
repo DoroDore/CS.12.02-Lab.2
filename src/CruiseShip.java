@@ -49,6 +49,22 @@ public class CruiseShip {
         }
     }
     /**
+     * Outputs the basic information of the ship, including the ship name, itinerary, passenger capacity, and passengers.
+     */
+    public void printShipInformation() {
+        System.out.println(ConsoleColors.RED + "Ship Name: " + shipName + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.RED + "Passenger Capacity: " + passengerCapacity + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.RED + "Itinerary: " + ConsoleColors.RESET);
+        for (Destination destination : itinerary) {
+            System.out.println("- " + destination.getDestinationName());
+        }
+        System.out.println(ConsoleColors.RED + "Passengers: " + ConsoleColors.RESET);
+        for (Passenger passenger : passengerList) {
+            System.out.println(passenger);
+            System.out.println("---------");
+        }
+    }
+    /**
      * Prints out the passengers on the cruise ship.
      */
     public void addPassenger(Passenger passenger) {
@@ -84,8 +100,18 @@ public class CruiseShip {
             System.out.println("Passenger is not on the ship");
         }
     }
-    public void joinActivity(Passenger passenger, Activity activity) {
-        activity.addMember(passenger);
+    public void joinActivity(Passenger passenger, Activity activity, Destination destination) {
+        if (passenger.getActivities().contains(activity)) {
+            System.out.println("Passenger is already in the activity");
+            return;
+        }
+        for (Activity a : passenger.getActivities()) {
+            if (destination.getActivities().contains(a)) {
+                System.out.println("Passenger is already part of another activity in this destination");
+                return;
+            }
+        }
+        activity.addMember(passenger, destination);
     }
     public String getShipName() {
         return shipName;
