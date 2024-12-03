@@ -78,6 +78,9 @@ public class Main {
         cruiseTest.printShipInformation();
     }
 
+    /**
+     * Sets up the cruise used for testing itineraries and the information of cruises.
+     */
     private static CruiseShip setUpCruise() {
         Destination destinationTest = new Destination("Destination Test");
         Actor actorTest = new Actor("Actor Test", "Actor Test Role");
