@@ -53,7 +53,7 @@ public class CruiseShip {
      */
     public void printShipInformation() {
         System.out.println(ConsoleColors.RED + "Ship Name: " + shipName + ConsoleColors.RESET);
-        System.out.println(ConsoleColors.RED + "Passenger Capacity: " + passengerCapacity + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.RED + "Passenger Capacity: " + passengerCapacity + " (" + passengerList.size() + " Seats Taken)" + ConsoleColors.RESET);
         System.out.println(ConsoleColors.RED + "Itinerary: " + ConsoleColors.RESET);
         for (Destination destination : itinerary) {
             System.out.println("- " + destination.getDestinationName());

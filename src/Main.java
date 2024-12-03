@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        testAddEverything();
+        testShipInformation();
     }
 
     /**
@@ -58,11 +58,27 @@ public class Main {
     }
 
     /**
-     * Puts together all the previous tests. Tests destinations and adding participants, creating the
-     * itinerary of the cruise ship, and then displaying it alongside all the passengers and their details
-     * in the "toString" of the Cruise Ship.
+     * Using a pre-set up cruise ship, tests the toString method in CruiseShip.java
+     * This method prints out EVERYTHING about the ship, the passengers, the itinerary, activities, and more.
      */
-    public static void testAddEverything() {
+    public static void testCruiseShipToString() {
+        CruiseShip cruiseTest = setUpCruise();
+
+        System.out.println(cruiseTest);
+    }
+
+    /**
+     * Using a pre-set up cruise ship, tests the printShipInformation method in CruiseShip.java
+     * The ship information gives a shorter version of the details of people and activities on the ship.
+     * This is supposed to be an easier to read and process version of the "toString" for cruises.
+     */
+    public static void testShipInformation() {
+        CruiseShip cruiseTest = setUpCruise();
+
+        cruiseTest.printShipInformation();
+    }
+
+    private static CruiseShip setUpCruise() {
         Destination destinationTest = new Destination("Destination Test");
         Actor actorTest = new Actor("Actor Test", "Actor Test Role");
         Actor actorTest2 = new Actor("Actor Test 2", "Actor Test Role 2");
@@ -94,9 +110,7 @@ public class Main {
         cruiseTest.addPassenger(passengerTest2);
         cruiseTest.addPassenger(passengerTest3);
         cruiseTest.addPassenger(passengerTest4);
-
-        //System.out.println(cruiseTest);
-        cruiseTest.printShipInformation();
+        return cruiseTest;
     }
 
     /**
